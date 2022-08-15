@@ -1,0 +1,88 @@
+$header-height: 116px;
+$counter-height: 28px;
+
+.header {
+    width: 100%;
+    height: $header-height;
+    margin: 0 auto;
+    padding: 0 5%;
+    background: #ffffff;
+    box-shadow: inset 0px -1px 0px #c9c9c9;
+    position: fixed;
+    z-index: 2;
+}
+
+.navigation {
+    .navigation-brand {
+        height: calc(#{$header-height} - #{3px});
+        .logo-img {
+            height: inherit;
+        }
+    }
+    .navigation-menu {
+        display: flex;
+        align-items: center;
+        ul {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            padding: 0px;
+            gap: 52px;
+            position: absolute;
+            width: 578px;
+            left: calc(50% - 578px / 2 + 89px);
+            .active {
+                color: #1abcfe;
+                font-weight: 600;
+                cursor: pointer;
+                box-shadow: 0px 6px 12px -6px rgba(23, 38, 74, 0.12), 0px 8px 24px -4px rgba(24, 39, 75, 0.08);
+            }
+            li {
+                letter-spacing: 1px;
+                background: linear-gradient(317.7deg, rgba(0, 0, 0, 0.4) 0%, rgba(255, 255, 255, 0.4) 105.18%), #ffffff;
+                background-blend-mode: soft-light, normal;
+                border: 0.5px solid rgba(255, 255, 255, 0.16);
+                box-shadow: 0px 2px 4px -2px rgba(24, 39, 75, 0.12), 0px 4px 4px -2px rgba(24, 39, 75, 0.08);
+                border-radius: 20px;
+                height: 39px;
+                line-height: 39px;
+                color: #7c7c7c;
+                text-align: center;
+                width: 100px;
+                transition: 0.2s;
+                &:active {
+                    color: #1abcfe;
+                    font-weight: 600;
+                    cursor: pointer;
+                    box-shadow: 0px 6px 12px -6px rgba(23, 38, 74, 0.12), 0px 8px 24px -4px rgba(24, 39, 75, 0.08);
+                }
+                &:hover {
+                    font-weight: 600;
+                    cursor: pointer;
+                    box-shadow: 0px 6px 12px -6px rgba(23, 38, 74, 0.12), 0px 8px 24px -4px rgba(24, 39, 75, 0.08);
+                }
+            }
+        }
+    }
+
+    .navigation-basket {
+        height: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        .backet-counter {
+            height: $counter-height;
+            width: $counter-height;
+            background-color: #ffffff;
+            color: #198fc2;
+            border-radius: 50%;
+            line-height: $counter-height;
+            text-align: center;
+            border: 1px solid #198fc2;
+            position: absolute;
+            right: 15px;
+            bottom: 20%;
+        }
+    }
+}

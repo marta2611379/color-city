@@ -9,15 +9,9 @@ export class SvgModule {
     private domSanitizer: DomSanitizer
   ) {
     this.matIconRegistry.addSvgIcon(
-      'visibility',
+      'backet',
       this.domSanitizer.bypassSecurityTrustResourceUrl(
-        '../assets/icons/visibility.svg'
-      )
-    );
-    this.matIconRegistry.addSvgIcon(
-      'visibility-off',
-      this.domSanitizer.bypassSecurityTrustResourceUrl(
-        '../assets/icons/visibility_off.svg'
+        '../../assets/icons/backet.svg'
       )
     );
   }

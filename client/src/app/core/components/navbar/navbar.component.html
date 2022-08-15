@@ -8,22 +8,25 @@
       />
     </a>
 
-    <div class="navigation-menu col-md-7">
-      <!-- <ul class="row">
-        <li class="col-md"><a href="#!">Articles</a></li>
-        <li class="col-md"><a href="#!">Users</a></li>
-        <li class="col-md"><a href="#!">Log out</a></li>
-      </ul> -->
-      <button class="btn btn-normal btn-style-1">Корзина</button>
-      <button class="btn btn-small btn-style-1">Корзина</button>
-      <button class="btn btn-large btn-style-1">Корзина</button>
+    <div class="navigation-menu col-md-8">
+      <ul class="row">
+        <li routerLinkActive="active" class="col-md" routerLink="catalog">
+          {{ "navbar.catalog" | translate }}
+        </li>
+        <li routerLinkActive="active" class="col-md" routerLink="contacts">
+          {{ "navbar.contacts" | translate }}
+        </li>
+        <li routerLinkActive="active" class="col-md" routerLink="admin">
+          {{ "navbar.admin" | translate }}
+        </li>
+      </ul>
     </div>
 
-    <div class="navigation-basket col-md-2">
-      <button class="btn btn-normal btn-style-1" [disabled]="true">
-        Корзина
+    <div class="navigation-basket col-md-1">
+      <button class="btn-circle btn-style-1">
+        <mat-icon svgIcon="backet"> </mat-icon>
+        <div class="backet-counter">0</div>
       </button>
-      
     </div>
   </nav>
 </header>

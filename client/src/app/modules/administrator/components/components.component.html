@@ -1,0 +1,18 @@
+<div class="d-flex">
+  <div class="side-panel">
+    <ul class="row">
+      <li routerLinkActive="active" class="col-md-12" routerLink="brand">
+        {{ "admin.brands" | translate }}
+      </li>
+      <li routerLinkActive="active" class="col-md-12" routerLink="product">
+        {{ "admin.goods" | translate }}
+      </li>
+      <li routerLinkActive="active" class="col-md-12" routerLink="category">
+        {{ "admin.category" | translate }}
+      </li>
+    </ul>
+  </div>
+  <div class="router-container">
+    <router-outlet></router-outlet>
+  </div>
+</div>
