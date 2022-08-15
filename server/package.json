@@ -1,0 +1,18 @@
+{
+    "name": "server",
+    "version": "0.0.0",
+    "scripts": {
+        "dev": "babel-watch server.js"
+    },
+    "devDependencies": {
+        "babel-watch": "^7.7.0"
+    },
+    "dependencies": {
+        "@babel/core": "^7.18.10",
+        "@babel/preset-env": "^7.18.10",
+        "babel-preset-env": "^1.7.0",
+        "cors": "^2.8.5",
+        "express": "^4.18.1",
+        "mongoose": "^6.5.2"
+    }
+}

@@ -1,0 +1,29 @@
+.header {
+    width: 90%;
+    height: 116px;
+    margin: 0 auto;
+    background: #ffffff;
+}
+
+.navigation {
+    height: inherit;
+    align-items: center;
+    .navigation-brand {
+        height: inherit;
+        .logo-img {
+            height: inherit;
+        }
+    }
+    .navigation-menu {
+        // display: flex;
+        // width: 50%;
+    }
+
+    .navigation-basket {
+        height: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        // width: 25%;
+    }
+}

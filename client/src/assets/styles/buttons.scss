@@ -1,0 +1,57 @@
+.btn {
+    border-radius: 30px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    color: #ffffff;
+    transition: 0.3s;
+}
+
+.btn-small {
+    width: 75px;
+    height: 39px;
+    padding: 10px 12px;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.btn-normal {
+    padding: 10px 35px;
+    width: 127px;
+    height: 46px;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.btn-large {
+    padding: 12px 35px;
+    width: 281px;
+    height: 50px;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.btn-style-1 {
+    box-shadow: -15px -15px 30px #fafbff, 15px 15px 30px rgba(166, 171, 189, 0.5);
+    background: linear-gradient(317.7deg, rgba(0, 0, 0, 0.4) 0%, rgba(255, 255, 255, 0.4) 105.18%), #06a3e6;
+
+    background-blend-mode: soft-light, normal;
+    &:hover {
+        background: linear-gradient(317.7deg, rgba(0, 0, 0, 0.4) 0%, rgba(255, 255, 255, 0.4) 105.18%), #198fc2;
+        color: #ffffff;
+        box-shadow: -15px -15px 30px #fafbff, 15px 15px 30px rgba(166, 171, 189, 0.5);
+    }
+    &:disabled {
+        background: #caeaf8;
+    }
+    &:active {
+        border: 2px solid #198fc2;
+        background: #ffffff;
+        color: #198fc2;
+        box-shadow: none !important;
+    }
+    &:focus {
+        // box-shadow: none !important;
+        box-shadow: -15px -15px 30px #fafbff, 15px 15px 30px rgba(166, 171, 189, 0.5);
+    }
+}
