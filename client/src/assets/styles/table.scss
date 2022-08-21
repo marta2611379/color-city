@@ -1,0 +1,31 @@
+.table-style2 {
+    width: auto;
+    margin: 30px auto;
+    tr {
+        td,
+        th {
+            padding: 14px 20px;
+            vertical-align: middle;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.01em;
+            color: #707683;
+        }
+    }
+    .table-head {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0.01em;
+        color: #334d6e;
+        opacity: 0.6;
+        tr {
+            th {
+                text-align: center;
+                font-weight: bold;
+                padding: 14px 20px;
+            }
+        }
+    }
+}

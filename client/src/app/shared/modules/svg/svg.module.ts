@@ -14,5 +14,54 @@ export class SvgModule {
         '../../assets/icons/backet.svg'
       )
     );
+
+    this.matIconRegistry.addSvgIcon(
+      'spiner',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        '../../assets/icons/spiner.svg'
+      )
+    );
+
+    this.matIconRegistry.addSvgIcon(
+      'trash',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        '../../assets/icons/trash.svg'
+      )
+    );
+
+    this.matIconRegistry.addSvgIcon(
+      'edit',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        '../../assets/icons/edit.svg'
+      )
+    );
+
+    this.matIconRegistry.addSvgIcon(
+      'archive',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        '../../assets/icons/archive.svg'
+      )
+    );
+
+    this.matIconRegistry.addSvgIcon(
+      'add',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        '../../assets/icons/add.svg'
+      )
+    );
+
+    this.matIconRegistry.addSvgIcon(
+      'attach',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        '../../assets/icons/attach.svg'
+      )
+    );
+
+    this.matIconRegistry.addSvgIcon(
+      'done',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        '../../assets/icons/done.svg'
+      )
+    );
   }
 }

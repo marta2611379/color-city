@@ -1,0 +1,78 @@
+<!-- ColData - table headers text -->
+<!-- GridData - table body content -->
+<!-- ShortData - boolean value;TRUE if object for rendering is from short data service -->
+<!-- ButtonData - config for button -->
+<!-- SvgData - config for svg button -->
+<!-- Counter - boolean value; TRUE if you need numbering rows -->
+<!-- TableClass - class name for table styles -->
+
+<div [ngClass]="{ 'loader-section': isLoading }">
+  <mat-icon *ngIf="isLoading" class="spiner" svgIcon="spiner"></mat-icon>
+  <app-empty-data [empty]="!GridData.length"></app-empty-data>
+  <table
+    [class]="TableClass"
+    class="table"
+    matSort
+    (matSortChange)="sortData($event)"
+  >
+    <thead class="table-head">
+      <tr>
+        <th *ngIf="RadioButton.radioDisplay"></th>
+        <th *ngIf="Counter">#</th>
+        <th *ngFor="let key of ColData" mat-sort-header="{{ key.field }}">
+          {{ key.header | titlecase }}
+        </th>
+      </tr>
+    </thead>
+    <tbody *ngIf="GridData.length > 0 && !showFullInfo">
+      <tr *ngFor="let record of GridData; let i = index">
+        <td *ngIf="Counter" class="fw-bold">{{ i + 1 }}</td>
+
+        <!-- if object -->
+        <td [hidden]="ShortData" *ngFor="let key of ColData">
+          <span *ngIf="isString(record[key.field])">{{
+            record[key.field]
+          }}</span>
+          <div class="" *ngIf="isArray(record[key.field])">
+            <div *ngFor="let arrItem of record[key.field]">
+              <p>{{ arrItem }},</p>
+              <br />
+            </div>
+          </div>
+        </td>
+        <td *ngFor="let btn of ButtonData">
+          <button
+            *ngIf="record.method"
+            (click)="button.emit({ method: record.method, obj: record })"
+            [disabled]="record.disabled ? 'disabled' : null"
+            [class]="btn.class"
+            [class.btn-secondary]="record.disabled"
+          >
+            {{ record.text }}
+          </button>
+          <button
+            *ngIf="!record.method"
+            (click)="button.emit({ method: btn.method, obj: record })"
+            [class]="btn.class"
+          >
+            {{ btn.text }}
+          </button>
+        </td>
+        <td>
+          <ng-container *ngFor="let svg of SvgData">
+            <button
+              matSuffix
+              mat-icon-button
+              matTooltip="{{ svg.tooltip }}"
+              [matTooltipPosition]="'above'"
+              [class]="svg.class"
+              *ngIf="svg.svgDisplay"
+              (click)="button.emit({ method: svg.method, obj: record })"
+            >
+              <mat-icon svgIcon="{{ svg.svgIcon }}"></mat-icon></button
+          ></ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -30,6 +30,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatExpansionModule } from '@angular/material/expansion';
 
 import { MatTreeModule } from '@angular/material/tree';
+import {MatSortModule} from '@angular/material/sort';
 
 const MY_FORMATS = {
   parse: {
@@ -71,6 +72,7 @@ const MaterialComponents = [
   //   MatSelectInfiniteScrollModule,
   MatExpansionModule,
   MatTreeModule,
+  MatSortModule
 ];
 
 @NgModule({

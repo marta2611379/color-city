@@ -1,0 +1,25 @@
+<div [ngClass]="{ 'loader-section': isLoading }">
+  <mat-icon *ngIf="isLoading" class="spiner" svgIcon="spiner"></mat-icon>
+  <div class="h4 text-center">
+    <form [formGroup]="brandForm">
+      <div class="row justify-content-between mt-3">
+        <mat-form-field class="col-md-12">
+          <mat-label>{{ "admin.brand.title" | translate }}</mat-label>
+          <input required matInput type="text" formControlName="title" />
+        </mat-form-field>
+      </div>
+    </form>
+    <div class="row justify-content-center">
+      <button
+        type="button"
+        class="btn-small btn-style-1 col-md m-4"
+        (click)="editBrand()"
+      >
+        {{ "general.edit" | translate }}
+      </button>
+      <button class="btn-small btn-style-2 col-md m-4" (click)="close.emit()">
+        {{ "general.close" | translate }}
+      </button>
+    </div>
+  </div>
+</div>

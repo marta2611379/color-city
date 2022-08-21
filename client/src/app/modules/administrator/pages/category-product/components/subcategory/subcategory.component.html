@@ -1,0 +1,48 @@
+<div [ngClass]="{ 'loader-section': isLoading }">
+  <mat-icon *ngIf="isLoading" class="spiner" svgIcon="spiner"></mat-icon>
+  <div class="admin-container">
+    <form [formGroup]="subcategoryForm">
+      <div class="row justify-content-between mt-3">
+        <mat-form-field class="col-md-6">
+          <mat-label>
+            {{ "admin.category.title" | translate }}
+          </mat-label>
+          <mat-select
+            required
+            formControlName="category_id"
+            (selectionChange)="selectCategory($event.value)"
+          >
+            <mat-option
+              matTooltip="{{ item.title }}"
+              matToolTipPosition="after"
+              *ngFor="let item of categories"
+              required
+              [value]="item._id"
+            >
+              <span>{{ item.title }}</span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field class="col-md-6">
+          <mat-label>{{ "admin.subcategory.title" | translate }}</mat-label>
+          <input required matInput type="text" formControlName="title" />
+        </mat-form-field>
+      </div>
+      <button class="btn-normal btn-style-1" (click)="createSubcategory()">
+        {{ "general.create" | translate }}
+      </button>
+    </form>
+
+    <app-empty-data [empty]="!subcategories.length"></app-empty-data>
+    <app-table
+      *ngIf="subcategories.length"
+      TableClass="table-style2 mt-4"
+      [Counter]="true"
+      [ColData]="tableConfigService.colSubcategories"
+      [GridData]="gridSubcategories"
+      (click)="onActionHandler($event)"
+      [SvgData]="tableConfigService.svgAdmin"
+    ></app-table>
+  </div>
+</div>

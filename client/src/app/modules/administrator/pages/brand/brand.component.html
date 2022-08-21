@@ -1,1 +1,28 @@
-<p>brand works!</p>
+<div [ngClass]="{ 'loader-section': isLoading }">
+  <mat-icon *ngIf="isLoading" class="spiner" svgIcon="spiner"></mat-icon>
+  <div class="admin-container">
+    <form [formGroup]="brandForm">
+      <div class="row justify-content-between mt-3">
+        <mat-form-field class="col-md-12">
+          <mat-label>{{ "admin.brand.title" | translate }}</mat-label>
+          <input required matInput type="text" formControlName="title" />
+        </mat-form-field>
+      </div>
+
+      <button class="btn-normal btn-style-1" (click)="createBrand()">
+        {{ "general.create" | translate }}
+      </button>
+    </form>
+
+    <app-empty-data [empty]="!brands.length"></app-empty-data>
+    <app-table
+      *ngIf="brands.length"
+      TableClass="table-style2 mt-4"
+      [Counter]="true"
+      [ColData]="tableConfigService.colBrands"
+      [GridData]="gridBrands"
+      (click)="onActionHandler($event)"
+      [SvgData]="tableConfigService.svgAdmin"
+    ></app-table>
+  </div>
+</div>

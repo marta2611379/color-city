@@ -1,0 +1,45 @@
+<mat-form-field floatPlaceholder="never" class="col-md-12 mt-3">
+  <mat-label>{{ "general.select_file" | translate }}</mat-label>
+
+  <button
+    class="w-100 d-flex justify-content-between p-0"
+    (click)="file.click()"
+  >
+    <input
+      readonly
+      matInput
+      value="{{ fileStaffName }}"
+      style="text-align: left"
+    />
+    <input
+      [hidden]="true"
+      type="file"
+      accept=""
+      #file
+      (change)="upload($event, index)"
+    />
+
+    <mat-icon
+      *ngIf="!uploadSuccess"
+      class="btn-secondary-my"
+      svgIcon="attach"
+      matTooltip="{{ 'general.select_file' | translate }}"
+      [matTooltipPosition]="'above'"
+    ></mat-icon>
+
+    <mat-icon
+      *ngIf="uploadSuccess"
+      class="btn-secondary-my"
+      svgIcon="done"
+      matTooltip="{{ 'general.select_file' | translate }}"
+      [matTooltipPosition]="'above'"
+    ></mat-icon>
+  </button>
+</mat-form-field>
+
+<div style="text-align: center" class="row">
+  <div [innerHtml]="msg" *ngIf="msg" style="color: red"></div>
+  <div class="col-md-3">
+    <img [src]="url1" *ngIf="url1" style="height: 50px" />
+  </div>
+</div>

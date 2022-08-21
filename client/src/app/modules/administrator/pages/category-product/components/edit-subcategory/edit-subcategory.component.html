@@ -1,0 +1,39 @@
+<div [ngClass]="{ 'loader-section': isLoading }">
+  <mat-icon *ngIf="isLoading" class="spiner" svgIcon="spiner"></mat-icon>
+  <form [formGroup]="subcategoryForm">
+    <div class="row justify-content-between mt-3">
+      <mat-form-field class="col-md-12">
+        <mat-label>
+          {{ "admin.category.title" | translate }}
+        </mat-label>
+        <mat-select required formControlName="category_id">
+          <mat-option
+            matTooltip="{{ item.title }}"
+            matToolTipPosition="after"
+            *ngFor="let item of categories"
+            required
+            [value]="item._id"
+          >
+            <span>{{ item.title }}</span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="col-md-12 mt-3">
+        <mat-label>{{ "admin.subcategory.title" | translate }}</mat-label>
+        <input required matInput type="text" formControlName="title" />
+      </mat-form-field>
+    </div>
+  </form>
+  <div class="row justify-content-center">
+    <button
+      type="button"
+      class="btn-small btn-style-1 col-md m-4"
+      (click)="editSubcategory()"
+    >
+      {{ "general.edit" | translate }}
+    </button>
+    <button class="btn-small btn-style-2 col-md m-4" (click)="close.emit()">
+      {{ "general.close" | translate }}
+    </button>
+  </div>
+</div>

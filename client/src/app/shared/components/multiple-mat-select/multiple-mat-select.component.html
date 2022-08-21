@@ -1,0 +1,15 @@
+<form [formGroup]="myForm">
+  <mat-form-field class="d-block">
+    <mat-label>{{ lable | translate }}</mat-label>
+    <mat-select formControlName="value" multiple #select>
+      <div class="m-3">
+        <mat-checkbox (change)="toggleAllSelection($event.checked)">
+          {{ "general.select_all" | translate }}
+        </mat-checkbox>
+      </div>
+      <mat-option *ngFor="let item of dictionary" [value]="item.key">
+        {{ item.value }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>

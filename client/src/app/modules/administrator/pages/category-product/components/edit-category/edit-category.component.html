@@ -1,0 +1,24 @@
+<div [ngClass]="{ 'loader-section': isLoading }">
+  <mat-icon *ngIf="isLoading" class="spiner" svgIcon="spiner"></mat-icon>
+
+  <form [formGroup]="categoryForm">
+    <div class="row justify-content-between mt-3">
+      <mat-form-field class="col-md-12">
+        <mat-label>{{ "admin.category.title" | translate }}</mat-label>
+        <input required matInput type="text" formControlName="title" />
+      </mat-form-field>
+    </div>
+  </form>
+  <div class="row justify-content-center">
+    <button
+      type="button"
+      class="btn-small btn-style-1 col-md m-4"
+      (click)="editCategory()"
+    >
+      {{ "general.edit" | translate }}
+    </button>
+    <button class="btn-small btn-style-2 col-md m-4" (click)="close.emit()">
+      {{ "general.close" | translate }}
+    </button>
+  </div>
+</div>

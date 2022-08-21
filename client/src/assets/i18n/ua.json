@@ -5,9 +5,64 @@
         "admin": "Адміністратор",
         "backet": "Корзина товарів"
     },
+    "general": {
+        "empty": "Порожньо",
+        "create": "Створити",
+        "close": "Скасувати",
+        "confirm": "Підтвердити",
+        "edit": "Редагувати",
+        "archive": "Архівувати",
+        "delete": "Видалити",
+        "status": "Статус",
+        "created_at": "Дата створення",
+        "title": "Назва",
+        "select_all": "Вибрати всі",
+        "select_file": "Вибрати фото",
+        "done": "Готово"
+    },
     "admin": {
         "brands": "Бренди",
         "goods": "Товари",
-        "category": "Категорії товарів"
+        "categories": "Категорії товарів",
+        "brand": {
+            "title": "Назва бренду",
+            "create": "Створити бренд"
+        },
+        "category": {
+            "title": "Назва категорії",
+            "create": "Створити бренд"
+        },
+        "subcategory": {
+            "title": "Назва підкатегорії",
+            "create": "Створити підкатегорію"
+        },
+        "product": {
+            "title": "Назва товару",
+            "manufacturer": "Виробник",
+            "category": "Категорія товару",
+            "subcategory": "Підкатегорія товару",
+            "manufacturer_country": "Країна виробник",
+            "code": "Код товару",
+            "volume_price": "Тара/ціна",
+            "unit": "Одиниця вимірювання",
+            "available_quantity": "Доступна кільксть",
+            "odorless": "Без запаху",
+            "drying_time": "Час висихання",
+            "product_base": "Основа",
+            "expense": "Розхід на кв. м",
+            "application_tool": "Тип нанесення",
+            "use_types": "Тип використання",
+            "used_for_materials": "Типи матеріалів, для яких використовується",
+            "colors": "Колір",
+            "degree_brilliance": "Ступінь блиску",
+            "textured": "Фактурне покриття",
+            "washing": "Миюче покриття",
+            "volume": "Об'єм/Вага",
+            "price": "Ціна"
+        }
+    },
+    "message": {
+        "delete_brand": "Ви дійсно бажаєте видалити бренд",
+        "delete_category": "Ви дійсно бажаєте видалити категорію"
     }
 }

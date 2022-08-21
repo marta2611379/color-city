@@ -1,0 +1,55 @@
+<form [formGroup]="myForm">
+  <div formArrayName="array">
+    <div
+      *ngFor="let item of array.controls; let sitesIndex = index"
+      [formGroupName]="sitesIndex"
+    >
+      <ng-container class="col-md-6 mt-3">
+        <mat-form-field>
+          <mat-label>{{ lable | translate }}</mat-label>
+          <mat-select formControlName="value">
+            <ng-container *ngIf="dictionary">
+              <mat-option
+                matTooltip="{{ item.value }}"
+                matToolTipPosition="after"
+                *ngFor="let item of dictionary"
+                [value]="item.key"
+              >
+                <span>{{ item.value }}</span>
+              </mat-option>
+            </ng-container>
+            <ng-container *ngIf="arrayRend">
+              <mat-option
+                matTooltip="{{ item.id }}"
+                matToolTipPosition="after"
+                *ngFor="let item of arrayRend"
+                [value]="item.id"
+              >
+                <span>{{ item.id }}</span>
+              </mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+        <button
+          class="btn-svg btn-danger-my ml-3"
+          *ngIf="displayDelBtn(array)"
+          (click)="deletedItem(array, sitesIndex)"
+          matTooltip="{{ 'general.delete' | translate }}"
+          [matTooltipPosition]="'above'"
+        >
+          <mat-icon svgIcon="trash"></mat-icon>
+        </button>
+      </ng-container>
+    </div>
+    <div class="d-flex pb-3">
+      <button
+        class="btn-svg btn-primary-my"
+        (click)="addItem(array)"
+        matTooltip="{{ 'general.create' | translate }}"
+        [matTooltipPosition]="'above'"
+      >
+        <mat-icon svgIcon="add"></mat-icon>
+      </button>
+    </div>
+  </div>
+</form>

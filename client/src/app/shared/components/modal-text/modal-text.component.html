@@ -1,0 +1,18 @@
+<div [ngClass]="{ 'loader-section': isLoading }">
+  <mat-icon *ngIf="isLoading" class="spiner" svgIcon="spiner"></mat-icon>
+  <div class="h4 text-center">
+    {{ text }}
+    <div class="row justify-content-center" *ngIf="button">
+      <button
+        type="button"
+        class="btn-small btn-style-1 col-md m-4"
+        (click)="action.emit()"
+      >
+        {{ actionLable | translate }}
+      </button>
+      <button class="btn-small btn-style-2 col-md m-4" (click)="close.emit()">
+        {{ "general.close" | translate }}
+      </button>
+    </div>
+  </div>
+</div>

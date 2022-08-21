@@ -28,7 +28,7 @@
         .active,
         .active:hover {
             color: #ffffff;
-            background-color: #1abcfe;
+            background-color: $mainColor;
             font-weight: bold;
         }
     }
@@ -40,4 +40,8 @@
     height: 100vh;
     padding-top: $header-height;
     padding-left: 235px;
+
+    .admin-container {
+        padding: 50px;
+    }
 }

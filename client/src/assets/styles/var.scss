@@ -1,0 +1,19 @@
+$dangerColor: #c33f3f;
+$warningColor: #f0b537;
+$successColor: #5cb259;
+$primaryColor: #5981b2;
+//
+$mainColor: #1abcfe;
+$mainColorDark: #198fc2;
+$mainColorGrey: #aaabab;
+
+//shadow
+$mainBoxShadow: 0px 8px 18px -6px rgba(24, 39, 75, 0.12), 0px 12px 42px -4px rgba(24, 39, 75, 0.12);
+
+//bg linear gradient
+$mainLinearGradient: linear-gradient(317.7deg, rgba(0, 0, 0, 0.4) 0%, rgba(255, 255, 255, 0.4) 105.18%), $mainColor;
+
+//
+$header-height: 116px;
+$counter-height: 28px;
+$bg-linear-gradient-base: linear-gradient(317.7deg, rgba(0, 0, 0, 0.4) 0%, rgba(255, 255, 255, 0.4) 105.18%), $mainColor;
