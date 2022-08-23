@@ -20,7 +20,7 @@ import { FileUploadModule } from 'src/app/shared/components/file-upload/file-upl
 import { FormArrayModule } from 'src/app/shared/components/form-array/form-array.module';
 import { PipesModule } from 'src/app/shared/pipes/pipe.module';
 import { MultipleMatSelectModule } from 'src/app/shared/components/multiple-mat-select/multiple-mat-select.module';
-import { VolumePriceComponent } from './pages/product/components/volume-price/volume-price.component';
+import { GoodsComponent } from './pages/product/components/goods/goods.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,7 @@ import { VolumePriceComponent } from './pages/product/components/volume-price/vo
     SubcategoryComponent,
     EditCategoryComponent,
     EditSubcategoryComponent,
-    VolumePriceComponent,
+    GoodsComponent,
   ],
   imports: [
     CommonModule,
@@ -47,7 +47,7 @@ import { VolumePriceComponent } from './pages/product/components/volume-price/vo
     FileUploadModule,
     FormArrayModule,
     PipesModule,
-    MultipleMatSelectModule
+    MultipleMatSelectModule,
   ],
 })
 export class AdministratorModule {}

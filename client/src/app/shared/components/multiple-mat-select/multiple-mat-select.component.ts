@@ -6,7 +6,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
 
@@ -23,7 +23,7 @@ export class MultipleMatSelectComponent implements OnInit {
   @Input() required: boolean = false;
 
   myForm: FormGroup = new FormGroup({});
-
+  @ViewChild('select') select!: MatSelect;
   constructor(public fb: FormBuilder) {}
 
   ngOnInit(): void {
@@ -42,7 +42,11 @@ export class MultipleMatSelectComponent implements OnInit {
     });
   }
 
-  @ViewChild('select') select!: MatSelect;
+  ngAfterViewInit() {
+    this.required
+      ? (this.select.required = true)
+      : (this.select.required = false);
+  }
 
   toggleAllSelection(checked: boolean) {
     checked

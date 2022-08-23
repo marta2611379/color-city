@@ -1,1 +1,189 @@
-<p>product works!</p>
+<div [ngClass]="{ 'loader-section': isLoading }">
+  <mat-icon *ngIf="isLoading" class="spiner" svgIcon="spiner"></mat-icon>
+  <div class="admin-container">
+    <form [formGroup]="productForm">
+      <h2>{{ "admin.product.main_characteristics" | translate }}</h2>
+      <div class="row mt-3">
+        <mat-form-field class="col-md-6">
+          <mat-label>{{ "admin.product.title" | translate }}</mat-label>
+          <input required matInput type="text" formControlName="title" />
+        </mat-form-field>
+
+        <mat-form-field class="col-md-3">
+          <mat-label>
+            {{ "admin.product.manufacturer" | translate }}
+          </mat-label>
+          <mat-select required formControlName="manufacturer_id">
+            <mat-option
+              matTooltip="{{ item.title }}"
+              matToolTipPosition="after"
+              *ngFor="let item of brands"
+              [value]="item._id"
+            >
+              {{ item.title }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-3">
+          <mat-label>
+            {{ "admin.product.manufacturer_country" | translate }}
+          </mat-label>
+          <input
+            required
+            matInput
+            type="text"
+            formControlName="manufacturer_country"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="col-md-6">
+          <mat-label>
+            {{ "admin.product.category" | translate }}
+          </mat-label>
+          <mat-select
+            required
+            formControlName="category_id"
+            (selectionChange)="selectCategory($event.value)"
+          >
+            <mat-option
+              matTooltip="{{ item.title }}"
+              matToolTipPosition="after"
+              *ngFor="let item of categories"
+              [value]="item._id"
+            >
+              {{ item.title }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-6">
+          <mat-label>
+            {{ "admin.product.subcategory" | translate }}
+          </mat-label>
+          <mat-select required formControlName="subcategory_id">
+            <mat-option
+              matTooltip="{{ item.title }}"
+              matToolTipPosition="after"
+              *ngFor="let item of subcategories"
+              [value]="item._id"
+            >
+              {{ item.title }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-3">
+          <mat-label>
+            {{ "admin.product.article_number" | translate }}
+          </mat-label>
+          <input
+            required
+            matInput
+            type="text"
+            formControlName="article_number"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="col-md-3">
+          <mat-label>
+            {{ "admin.product.product_base" | translate }}
+          </mat-label>
+          <mat-select required formControlName="product_base">
+            <mat-option
+              matTooltip="{{ item.value }}"
+              matToolTipPosition="after"
+              *ngFor="
+                let item of dictionaries.product_base
+                  | keyvalue
+                  | sortBy: 'asc':'value'
+              "
+              [value]="item.key"
+            >
+              {{ item.value }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-3">
+          <mat-label>
+            {{ "admin.product.expense" | translate }}
+          </mat-label>
+          <input required matInput type="text" formControlName="expense" />
+        </mat-form-field>
+
+        <mat-form-field class="col-md-3">
+          <mat-label>
+            {{ "admin.product.drying_time" | translate }}
+          </mat-label>
+          <input required matInput type="text" formControlName="drying_time" />
+        </mat-form-field>
+
+        <mat-form-field class="col-md-3">
+          <mat-label>
+            {{ "admin.product.use_types" | translate }}
+          </mat-label>
+          <mat-select required formControlName="use_types">
+            <mat-option
+              matTooltip="{{ item.value }}"
+              matToolTipPosition="after"
+              *ngFor="
+                let item of dictionaries.use_types
+                  | keyvalue
+                  | sortBy: 'asc':'value'
+              "
+              [value]="item.key"
+            >
+              {{ item.value }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <app-multiple-mat-select
+          class="col-md-3"
+          [lable]="'admin.product.used_for_materials'"
+          (arrayValue)="getMatSelectValue($event)"
+          [required]="true"
+          [controlName]="'used_for_materials'"
+          [dictionary]="
+            dictionaries.used_for_materials | keyvalue | sortBy: 'asc':'value'
+          "
+        ></app-multiple-mat-select>
+
+        <app-multiple-mat-select
+          class="col-md-3"
+          [lable]="'admin.product.application_tool'"
+          (arrayValue)="getMatSelectValue($event)"
+          [required]="true"
+          [controlName]="'application_tool'"
+          [dictionary]="
+            dictionaries.application_tool | keyvalue | sortBy: 'asc':'value'
+          "
+        ></app-multiple-mat-select>
+
+        <app-goods
+          (arrayValue)="getVolumeValue($event)"
+          [dictionaryColors]="dictionaries.colors"
+          [dictionaryColorsBase]="dictionaries.colors_base"
+          [dictionaryDegreeBrilliance]="dictionaries.degree_brilliance"
+          [dictionaryUnit]="dictionaries.unit"
+        ></app-goods>
+
+        <mat-checkbox class="col-md-12 mt-4" formControlName="odorless">
+          {{ "admin.product.odorless" | translate }}
+        </mat-checkbox>
+
+        <mat-checkbox class="col-md-12 mt-4" formControlName="textured">
+          {{ "admin.product.textured" | translate }}
+        </mat-checkbox>
+
+        <mat-checkbox class="col-md-12 mt-4" formControlName="washing">
+          {{ "admin.product.washing" | translate }}
+        </mat-checkbox>
+      </div>
+      <button class="btn-normal btn-style-1 my-4" (click)="createProduct()">
+        {{ "general.create" | translate }}
+      </button>
+    </form>
+  </div>
+</div>

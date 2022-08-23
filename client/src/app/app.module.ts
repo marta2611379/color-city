@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrandService } from './shared/services/brand.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './core/components/navbar/navbar.component';
@@ -18,8 +17,6 @@ import {
   HTTP_INTERCEPTORS,
 } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
-import { CategoryService } from './shared/services/category.service';
-import { SubcategoryService } from './shared/services/subcategory.service ';
 import { HttpConfigInterceptor } from './core/interceptors/http.interceptor';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {

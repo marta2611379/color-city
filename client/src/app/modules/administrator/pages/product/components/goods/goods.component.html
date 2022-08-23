@@ -1,0 +1,176 @@
+<div class="row">
+  <mat-checkbox class="col-md-12 mt-4" (change)="baseCheck($event.checked)">
+    {{ "admin.product.base" | translate }}
+  </mat-checkbox>
+</div>
+<form [formGroup]="myForm" class="mt-3">
+  <div formArrayName="goods">
+    <div
+      class="row"
+      *ngFor="let item of array.controls; let sitesIndex = index"
+      [formGroupName]="sitesIndex"
+    >
+      <div class="col-md-3">
+        <app-file-upload
+          (onChange)="getImg($event, sitesIndex)"
+        ></app-file-upload>
+      </div>
+      <div class="row col-md-9 px-0 mx-0" style="height: fit-content">
+        <mat-form-field class="col-md-4">
+          <mat-label>
+            {{ "admin.product.unit" | translate }}
+          </mat-label>
+          <mat-select required formControlName="unit">
+            <mat-option
+              matTooltip="{{ item.value }}"
+              matToolTipPosition="after"
+              *ngFor="
+                let item of dictionaryUnit | keyvalue | sortBy: 'asc':'value'
+              "
+              [value]="item.key"
+            >
+              {{ item.value }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4">
+          <mat-label>
+            {{ "admin.product.volume" | translate }}
+          </mat-label>
+          <input
+            required
+            matInput
+            type="number"
+            min="0"
+            formControlName="volume"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4">
+          <mat-label>
+            {{ "admin.product.price" | translate }}
+          </mat-label>
+          <input
+            required
+            matInput
+            type="number"
+            min="0"
+            formControlName="price"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4">
+          <mat-label>
+            {{ "admin.product.code" | translate }}
+          </mat-label>
+          <input required matInput type="text" formControlName="code" />
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4">
+          <mat-label>
+            {{ "admin.product.available_quantity" | translate }}
+          </mat-label>
+          <input
+            required
+            matInput
+            type="number"
+            min="0"
+            formControlName="available_quantity"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4">
+          <mat-label>
+            {{ "admin.product.colors" | translate }}
+          </mat-label>
+          <mat-select required formControlName="colors">
+            <ng-container *ngIf="!base">
+              <mat-option
+                matTooltip="{{ item.value }}"
+                matToolTipPosition="after"
+                *ngFor="
+                  let item of dictionaryColors
+                    | keyvalue
+                    | sortBy: 'asc':'value'
+                "
+                required
+                [value]="item.key"
+              >
+                <div class="d-flex align-items-center">
+                  <div
+                    class="option-color-square"
+                    [ngStyle]="{ 'background-color': item.key }"
+                  ></div>
+                  <div>{{ item.value }}</div>
+                </div>
+              </mat-option>
+            </ng-container>
+            <ng-container *ngIf="base">
+              <mat-option
+                matTooltip="{{ item.value }}"
+                matToolTipPosition="after"
+                *ngFor="
+                  let item of dictionaryColorsBase
+                    | keyvalue
+                    | sortBy: 'asc':'value'
+                "
+                required
+                [value]="item.key"
+              >
+                <div class="d-flex align-items-center">
+                  <div
+                    class="option-color-square"
+                    [ngStyle]="{ 'background-color': item.key }"
+                  ></div>
+                  <div>{{ item.value }}</div>
+                </div>
+              </mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4">
+          <mat-label>
+            {{ "admin.product.degree_brilliance" | translate }}
+          </mat-label>
+          <mat-select formControlName="degree_brilliance">
+            <mat-option
+              matTooltip="{{ item.value }}"
+              matToolTipPosition="after"
+              *ngFor="
+                let item of dictionaryDegreeBrilliance
+                  | keyvalue
+                  | sortBy: 'asc':'value'
+              "
+              [value]="item.key"
+            >
+              {{ item.value }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button
+          class="btn-svg btn-danger-my ml-3 mt-3"
+          *ngIf="displayDelBtn(array)"
+          (click)="deletedItem(array, sitesIndex)"
+          matTooltip="{{ 'general.delete' | translate }}"
+          [matTooltipPosition]="'above'"
+        >
+          <mat-icon svgIcon="trash"></mat-icon>
+        </button>
+      </div>
+      <mat-divider class="my-3 row"></mat-divider>
+    </div>
+    <div class="d-flex pb-3">
+      <button
+        class="btn-svg btn-primary-my"
+        (click)="addItem(array)"
+        matTooltip="{{ 'general.create' | translate }}"
+        [matTooltipPosition]="'above'"
+      >
+        <mat-icon svgIcon="add"></mat-icon>
+      </button>
+    </div>
+  </div>
+</form>

@@ -93,9 +93,9 @@ export class SubcategoryComponent extends OnDestroyMixin implements OnInit {
       .createSubcategory(this.subcategoryForm.value)
       .pipe(untilComponentDestroyed(this))
       .subscribe((v) => {
-        this.subcategoryForm.reset();
+        this.subcategoryForm?.get('title')?.reset();
         this.isLoading = false;
-        this.getAllSubcategories();
+        this.selectCategory(this.subcategoryForm?.get('category_id')?.value);
       });
   }
 

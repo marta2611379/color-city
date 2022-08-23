@@ -30,7 +30,7 @@
         },
         "category": {
             "title": "Назва категорії",
-            "create": "Створити бренд"
+            "create": "Створити категорію"
         },
         "subcategory": {
             "title": "Назва підкатегорії",
@@ -58,7 +58,10 @@
             "textured": "Фактурне покриття",
             "washing": "Миюче покриття",
             "volume": "Об'єм/Вага",
-            "price": "Ціна"
+            "price": "Ціна",
+            "article_number": "Артикул",
+            "base": "База",
+            "main_characteristics": "Основні характеристики"
         }
     },
     "message": {

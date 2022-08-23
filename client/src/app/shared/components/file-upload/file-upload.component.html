@@ -1,4 +1,11 @@
-<mat-form-field floatPlaceholder="never" class="col-md-12 mt-3">
+<div style="text-align: center" class="row">
+  <div [innerHtml]="msg" *ngIf="msg" style="color: red"></div>
+  <div>
+    <img [src]="url1" *ngIf="url1" style="width: inherit" />
+  </div>
+</div>
+
+<mat-form-field floatPlaceholder="never" class="d-block">
   <mat-label>{{ "general.select_file" | translate }}</mat-label>
 
   <button
@@ -36,10 +43,3 @@
     ></mat-icon>
   </button>
 </mat-form-field>
-
-<div style="text-align: center" class="row">
-  <div [innerHtml]="msg" *ngIf="msg" style="color: red"></div>
-  <div class="col-md-3">
-    <img [src]="url1" *ngIf="url1" style="height: 50px" />
-  </div>
-</div>

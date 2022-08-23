@@ -18,7 +18,7 @@ export class ProductService {
     );
   }
 
-  createProduct(brandData: IBrandCreate) {
+  createProduct(brandData: any) {
     return this.http.post(`/products/create`, brandData);
   }
 
