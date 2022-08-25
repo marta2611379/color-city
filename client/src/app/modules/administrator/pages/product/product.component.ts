@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   OnDestroyMixin,
@@ -33,7 +33,8 @@ export class ProductComponent extends OnDestroyMixin implements OnInit {
     public subcategoryService: SubcategoryService,
     public categoryService: CategoryService,
     public dictionaries: DictionaryService,
-    public fb: FormBuilder
+    public fb: FormBuilder,
+    public ref: ChangeDetectorRef
   ) {
     super();
   }
@@ -45,6 +46,10 @@ export class ProductComponent extends OnDestroyMixin implements OnInit {
     this.productService.getProducts().subscribe((v) => {
       console.log(v);
     });
+  }
+
+  ngAfterContentChecked() {
+    this.ref.detectChanges();
   }
 
   getBrands() {
