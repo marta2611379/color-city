@@ -8,8 +8,11 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
-import { MatTooltipModule, MAT_TOOLTIP_DEFAULT_OPTIONS } from '@angular/material/tooltip';
-import { MatCardModule } from '@angular/material/card';
+import {
+  MatTooltipModule,
+  MAT_TOOLTIP_DEFAULT_OPTIONS,
+} from '@angular/material/tooltip';
+import { MatCardActions, MatCardModule, MatCardSubtitle } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
@@ -30,7 +33,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatExpansionModule } from '@angular/material/expansion';
 
 import { MatTreeModule } from '@angular/material/tree';
-import {MatSortModule} from '@angular/material/sort';
+import { MatSortModule } from '@angular/material/sort';
+import { MatMenuModule } from '@angular/material/menu';
 
 const MY_FORMATS = {
   parse: {
@@ -72,7 +76,11 @@ const MaterialComponents = [
   //   MatSelectInfiniteScrollModule,
   MatExpansionModule,
   MatTreeModule,
-  MatSortModule
+  MatSortModule,
+  MatCardModule,
+  MatMenuModule
+  // MatCardActions,
+  // MatCardSubtitle
 ];
 
 @NgModule({
@@ -84,7 +92,7 @@ const MaterialComponents = [
     {
       provide: MAT_TOOLTIP_DEFAULT_OPTIONS,
       useValue: { showDelay: 500 },
-    }
+    },
   ],
 })
 export class MaterialModule {}

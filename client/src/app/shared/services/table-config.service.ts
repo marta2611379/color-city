@@ -63,7 +63,7 @@ export class TableConfigService extends OnDestroyMixin {
         ];
 
         this.colSubcategories = [
-          { field: 'title', header: t.admin.category.title },
+          { field: 'title', header: t.admin.subcategory.title },
           { field: 'status', header: t.general.status },
           { field: 'createdAt', header: t.general.created_at },
           { field: 'category', header: t.admin.category.title },

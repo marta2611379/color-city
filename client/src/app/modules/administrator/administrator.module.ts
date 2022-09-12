@@ -13,14 +13,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmptyDataModule } from 'src/app/shared/components/empty-data/empty-data.module';
 import { ModalTextModule } from 'src/app/shared/components/modal-text/modal-text.module';
 import { EditBrandComponent } from './pages/brand/components/edit-brand/edit-brand.component';
-import { SubcategoryComponent } from './pages/category-product/components/subcategory/subcategory.component';
+import { CreateSubcategoryComponent } from './pages/category-product/components/create-subcategory/create-subcategory.component';
 import { EditCategoryComponent } from './pages/category-product/components/edit-category/edit-category.component';
 import { EditSubcategoryComponent } from './pages/category-product/components/edit-subcategory/edit-subcategory.component';
 import { FileUploadModule } from 'src/app/shared/components/file-upload/file-upload.module';
 import { FormArrayModule } from 'src/app/shared/components/form-array/form-array.module';
 import { PipesModule } from 'src/app/shared/pipes/pipe.module';
 import { MultipleMatSelectModule } from 'src/app/shared/components/multiple-mat-select/multiple-mat-select.module';
-import { GoodsComponent } from './pages/product/components/goods/goods.component';
+import { GoodsComponent } from './pages/product/components/create-good/components/goods/goods.component';
+import { CreateCategoryComponent } from './pages/category-product/components/create-category/create-category.component';
+import { CreateGoodComponent } from './pages/product/components/create-good/create-good.component';
+import { EditGoodComponent } from './pages/product/components/edit-good/edit-good.component';
+import { EditCardComponent } from './pages/product/components/edit-good/components/edit-card/edit-card.component';
 
 @NgModule({
   declarations: [
@@ -29,10 +33,14 @@ import { GoodsComponent } from './pages/product/components/goods/goods.component
     ProductComponent,
     CategoryProductComponent,
     EditBrandComponent,
-    SubcategoryComponent,
+    CreateCategoryComponent,
+    CreateSubcategoryComponent,
     EditCategoryComponent,
     EditSubcategoryComponent,
     GoodsComponent,
+    CreateGoodComponent,
+    EditGoodComponent,
+    EditCardComponent,
   ],
   imports: [
     CommonModule,

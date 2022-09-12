@@ -1,0 +1,70 @@
+<div class="edit-img">
+  <!-- <img [src]="selectedColorObj?.img | readBufferImg" alt="Image Source" /> -->
+</div>
+
+<div class="edit-content">
+  <div class="edit-title">
+    {{ item.title }}
+  </div>
+  <div class="edit-setting" #volume>
+    <!-- <ng-container
+        *ngFor="let sett of item.goods | modifyObjForCard; let i = index"
+      >
+        <div
+          class="setting-circle"
+          [ngClass]="{
+            'setting-circle-active': i == selectedArrVolumeIndex
+          }"
+          (click)="selectVolume(sett, i)"
+        >
+          {{ sett[0].volume }}
+          {{ dictionaries.unit[sett[0].unit] }}
+        </div>
+      </ng-container> -->
+  </div>
+
+  <!-- <div class="good-color mx-1" #color>
+      <ng-container *ngFor="let col of selectedArrVolume; let colIndex = index">
+        <div
+          matTooltip="{{ dictionaries.colors[col.colors] }}"
+          [matTooltipPosition]="'above'"
+          class="color-circle"
+          [ngStyle]="{ 'background-color': col.colors }"
+          [ngClass]="{ 'color-circle-active': colIndex == selectedArrColorIndex }"
+          (click)="selectColor(col, colIndex)"
+        ></div>
+      </ng-container>
+    </div> -->
+</div>
+
+<div class="good-footer">
+  <!-- <div class="price">{{ selectedColorObj.price }}₴</div> -->
+  <!-- <div class="quantity-container">
+      <div
+        class="decrement"
+        (click)="decrement(selectedColorObj.available_quantity)"
+      >
+        <mat-icon svgIcon="dec"></mat-icon>
+      </div>
+      <input
+        class="quantity"
+        type="number"
+        min="1"
+        value="1"
+        [formControl]="goodQuantity"
+      />
+      <div
+        class="increment"
+        (click)="increment(selectedColorObj.available_quantity)"
+      >
+        <mat-icon svgIcon="inc"></mat-icon>
+      </div>
+    </div> -->
+  <!-- <button
+      class="btn-circle btn-style-1 btn-card"
+      matTooltip="{{ 'general.add_to_backet' | translate }}"
+      [matTooltipPosition]="'above'"
+    >
+      <mat-icon svgIcon="backet"> </mat-icon>
+    </button> -->
+</div>

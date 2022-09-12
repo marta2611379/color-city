@@ -1,0 +1,10 @@
+<div [ngClass]="{ 'loader-section': isLoading }">
+  <mat-icon *ngIf="isLoading" class="spiner" svgIcon="spiner"></mat-icon>
+  <div class="admin-container">
+    <div class="good-container">
+        <ng-container *ngFor="let item of products; let card_I = index">
+          <app-edit-card class="edit-card" [item]="item"></app-edit-card>
+        </ng-container>
+      </div>
+  </div>
+</div>

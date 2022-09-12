@@ -1,8 +1,9 @@
 const searchParams = require('../../helpers/searchParams');
 const ProductsModels = require('./products.model');
-const ImagesModels = require('../image/image.model');
-import fsPromises from 'fs/promises'
-import path from 'path'
+// import fsPromises from 'fs/promises'
+// import path from 'path'
+var fsPromises = require('fs/promises');
+var path = require('path');
 const fs = require("fs");
 
 const getProducts = async (req, res) => {

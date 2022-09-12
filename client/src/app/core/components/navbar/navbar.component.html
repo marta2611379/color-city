@@ -1,32 +1,69 @@
 <header class="header">
-  <nav class="navigation row">
-    <a href="#!" class="navigation-brand col-md-3">
-      <img
-        src="../../../../assets/img/color_city.png"
-        alt="logo"
-        class="logo-img"
-      />
-    </a>
+  <nav class="navigation">
+    <div class="navigation-menu">
+      <a href="#!" class="navigation-brand">
+        <img
+          src="../../../../assets/img/color_city.png"
+          alt="logo"
+          class="logo-img"
+        />
+      </a>
+      <button
+        class="burger-menu"
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu"
+      >
+        <mat-icon svgIcon="menu"> </mat-icon>
+      </button>
+      <mat-menu #menu="matMenu" overlapTrigger="true" class="nav-bar">
+        <button
+          mat-menu-item
+          routerLinkActive="active"
+          class="nav-item"
+          routerLink="catalog"
+        >
+          <mat-icon>list_alt</mat-icon>
+          <span>{{ "navbar.catalog" | translate }}</span>
+        </button>
+        <button
+          mat-menu-item
+          routerLinkActive="active"
+          class="nav-item"
+          routerLink="contacts"
+        >
+          <mat-icon>contact_mail</mat-icon>
+          <span> {{ "navbar.contacts" | translate }}</span>
+        </button>
+        <button
+          mat-menu-item
+          routerLinkActive="active"
+          class="nav-item"
+          routerLink="admin"
+        >
+          <mat-icon>settings_applications</mat-icon>
+          <span>{{ "navbar.admin" | translate }}</span>
+        </button>
+      </mat-menu>
 
-    <div class="navigation-menu col-md-8">
-      <ul class="row">
-        <li routerLinkActive="active" class="col-md" routerLink="catalog">
+      <ul class="nav-bar hide-menu">
+        <li routerLinkActive="active" class="nav-item" routerLink="catalog">
           {{ "navbar.catalog" | translate }}
         </li>
-        <li routerLinkActive="active" class="col-md" routerLink="contacts">
+        <li routerLinkActive="active" class="nav-item" routerLink="contacts">
           {{ "navbar.contacts" | translate }}
         </li>
-        <li routerLinkActive="active" class="col-md" routerLink="admin">
+        <li routerLinkActive="active" class="nav-item" routerLink="admin">
           {{ "navbar.admin" | translate }}
         </li>
       </ul>
     </div>
 
-    <div class="navigation-basket col-md-1">
+    <div class="navigation-basket">
       <button class="btn-circle btn-style-1">
         <mat-icon svgIcon="backet"> </mat-icon>
-        <div class="backet-counter">0</div>
       </button>
+      <div class="backet-counter">0</div>
     </div>
   </nav>
 </header>

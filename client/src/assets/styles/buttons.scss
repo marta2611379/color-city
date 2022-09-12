@@ -110,6 +110,7 @@
     border-radius: 5px;
     &:hover {
         mat-icon {
+            transition: 0.2s;
             &:hover {
                 width: 30px;
                 height: 30px;
@@ -150,12 +151,12 @@
 }
 
 .btn-primary-my {
-    color: $primaryColor;
+    color: $mainColorDark;
     &:disabled {
         // background: #caeaf8;
     }
     &:active {
-        border: 1px solid $primaryColor;
+        border: 1px solid $mainColorDark;
     }
 }
 

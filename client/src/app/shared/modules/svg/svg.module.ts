@@ -63,5 +63,26 @@ export class SvgModule {
         '../../assets/icons/done.svg'
       )
     );
+
+    this.matIconRegistry.addSvgIcon(
+      'menu',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        '../../assets/icons/menu.svg'
+      )
+    );
+
+    this.matIconRegistry.addSvgIcon(
+      'dec',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        '../../assets/icons/minus.svg'
+      )
+    );
+
+    this.matIconRegistry.addSvgIcon(
+      'inc',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        '../../assets/icons/plus.svg'
+      )
+    );
   }
 }

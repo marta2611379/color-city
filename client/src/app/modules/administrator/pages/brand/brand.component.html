@@ -17,7 +17,7 @@
     <app-empty-data [empty]="!brands.length"></app-empty-data>
     <app-table
       *ngIf="brands.length"
-      TableClass="table-style2 mt-4"
+      TableClass="table-style2 mt-4 table table-hover"
       [Counter]="true"
       [ColData]="tableConfigService.colBrands"
       [GridData]="gridBrands"

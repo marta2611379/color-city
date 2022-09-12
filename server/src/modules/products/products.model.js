@@ -5,6 +5,10 @@ const imageSchema = new mongoose.Schema({
 });
 const goodSchema = mongoose.Schema({
     img: { type: imageSchema },
+    unit: {
+        type: String,
+        required: true, enum: ['kg', 'l'],
+    },
     volume: {
         type: Number,
         required: true,
@@ -63,11 +67,7 @@ const Product = mongoose.Schema({
         type: String,
         required: true
     },
-    unit: {
-        type: String,
-        ref: "Subcategory",
-        required: true, enum: ['kg', 'l'],
-    },
+
     // goods: [goodSchema],
     goods: {
         type: [goodSchema],

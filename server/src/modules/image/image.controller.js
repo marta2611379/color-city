@@ -1,6 +1,8 @@
 const ImageModels = require('./image.model');
-import fsPromises from 'fs/promises'
-import path from 'path'
+var fsPromises = require('fs/promises');
+var path = require('path');
+// import fsPromises from 'fs/promises'
+// import path from 'path'
 const fs = require("fs");
 
 const uploadImage = async (req, res,) => {

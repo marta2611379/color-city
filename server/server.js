@@ -1,12 +1,18 @@
-import express from 'express';
-import cors from 'cors';
-import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
+var express = require('express'),
+    bodyParser = require('body-parser'),
+    cors = require('cors'),
+    mongoose = require('mongoose');
+
+// import express from 'express';
+// import cors from 'cors';
+// import bodyParser from 'body-parser';
+// import mongoose from 'mongoose';
 const app = express();
 const router = require('./src/common/api.js')
 
 app.use(cors());
 app.use(bodyParser.json());
+
 
 app.use('/', router);
 
@@ -18,3 +24,5 @@ connection.once('open', () => {
 });
 
 app.listen(4000, () => console.log(`Express server running on port 4000`));
+
+

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   MatDialog,
@@ -12,46 +12,43 @@ import {
 } from '@w11k/ngx-componentdestroyed';
 import { ModalTextComponent } from 'src/app/shared/components/modal-text/modal-text.component';
 import { ICategory } from 'src/app/shared/interfaces/category.interface';
-import {
-  ISubcategory,
-  ISubcategoryCreate,
-} from 'src/app/shared/interfaces/subcategory.interface';
 import { CategoryService } from 'src/app/shared/services/category.service';
 import { SubcategoryService } from 'src/app/shared/services/subcategory.service ';
 import { TableConfigService } from 'src/app/shared/services/table-config.service';
-import { EditSubcategoryComponent } from '../edit-subcategory/edit-subcategory.component';
+import { EditCategoryComponent } from '../edit-category/edit-category.component';
 
 @Component({
-  selector: 'app-subcategory',
-  templateUrl: './subcategory.component.html',
-  styleUrls: ['./subcategory.component.scss'],
+  selector: 'app-create-category',
+  templateUrl: './create-category.component.html',
+  styleUrls: ['./create-category.component.scss'],
 })
-export class SubcategoryComponent extends OnDestroyMixin implements OnInit {
-  subcategoryForm: FormGroup = new FormGroup({});
-  subcategories: Array<ISubcategory> = [];
-  gridSubcategories: Array<any> = [];
-  @Input() categories: Array<ICategory> = [];
+export class CreateCategoryComponent extends OnDestroyMixin implements OnInit {
+  categoryForm: FormGroup = new FormGroup({});
+  gridCategories: Array<any> = [];
   isLoading: boolean = false;
 
   dialogConfig: MatDialogConfig = new MatDialogConfig();
   dialogRef!: MatDialogRef<any>;
+
+  @Output() updateCategoryList = new EventEmitter();
+
   constructor(
     public fb: FormBuilder,
-    public subcategoryService: SubcategoryService,
     public categoryService: CategoryService,
+    public subcategoryService: SubcategoryService,
     public tableConfigService: TableConfigService,
     public dialog: MatDialog,
     public translate: TranslateService
   ) {
     super();
   }
-
   ngOnInit(): void {
     this.reactiveForm();
-    this.getAllSubcategories();
+    this.getAllCategories();
   }
+
   onActionHandler(member: {
-    method: Exclude<keyof SubcategoryComponent, ''>;
+    method: Exclude<keyof CreateCategoryComponent, ''>;
     obj: any;
   }) {
     if (typeof member.method == 'string') {
@@ -59,43 +56,31 @@ export class SubcategoryComponent extends OnDestroyMixin implements OnInit {
     }
   }
 
-  selectCategory(id: string) {
+  getAllCategories() {
     this.isLoading = true;
-    this.subcategoryService
-      .getSubcategoriesBySearch({ category_id: id })
+    this.categoryService
+      .getCategories()
       .pipe(untilComponentDestroyed(this))
-      .subscribe((v) => {
+      .subscribe((b: Array<ICategory>) => {
+        this.gridCategories = this.tableConfigService.gridCategories(b);
         this.isLoading = false;
-        this.subcategories = v;
-        this.gridSubcategories = this.tableConfigService.gridSubcategories(v);
+        this.updateCategoryList.emit(b);
       });
   }
 
-  getAllSubcategories() {
-    this.isLoading = true;
-    this.subcategoryService
-      .getSubcategories()
-      .pipe(untilComponentDestroyed(this))
-      .subscribe((b: Array<ISubcategory>) => {
-        this.subcategories = b;
-        this.gridSubcategories = this.tableConfigService.gridSubcategories(b);
-        this.isLoading = false;
-      });
-  }
-
-  createSubcategory() {
-    if (this.subcategoryForm.invalid) {
-      this.subcategoryForm.markAllAsTouched();
+  createCategory() {
+    if (this.categoryForm.invalid) {
+      this.categoryForm.markAllAsTouched();
       return;
     }
     this.isLoading = true;
-    this.subcategoryService
-      .createSubcategory(this.subcategoryForm.value)
+    this.categoryService
+      .createCategory(this.categoryForm.value)
       .pipe(untilComponentDestroyed(this))
       .subscribe((v) => {
-        this.subcategoryForm?.get('title')?.reset();
+        this.categoryForm.reset();
         this.isLoading = false;
-        this.selectCategory(this.subcategoryForm?.get('category_id')?.value);
+        this.getAllCategories();
       });
   }
 
@@ -106,7 +91,7 @@ export class SubcategoryComponent extends OnDestroyMixin implements OnInit {
       .get('message')
       .pipe(untilComponentDestroyed(this))
       .subscribe((e) => {
-        this.dialogRef.componentInstance.text = `${e.delete_subcategory} ${obj.title}?`;
+        this.dialogRef.componentInstance.text = `${e.delete_category} ${obj.title}?`;
       });
 
     this.closeModal(this.dialogRef);
@@ -119,11 +104,11 @@ export class SubcategoryComponent extends OnDestroyMixin implements OnInit {
   }
 
   deleteCategory(id: string) {
-    this.subcategoryService
-      .deleteSubcategory(id)
+    this.categoryService
+      .deleteCategory(id)
       .pipe(untilComponentDestroyed(this))
       .subscribe((v) => {
-        this.getAllSubcategories();
+        this.getAllCategories();
         this.dialogRef.close();
         this.dialogRef.componentInstance.isLoading = false;
       });
@@ -132,27 +117,23 @@ export class SubcategoryComponent extends OnDestroyMixin implements OnInit {
   openUpdateModal(obj: any) {
     const tempId = obj.obj._id;
     this.dialogConfig.width = '55%';
-    this.dialogRef = this.dialog.open(
-      EditSubcategoryComponent,
-      this.dialogConfig
-    );
-    this.dialogRef.componentInstance.subcategoryObj = obj.obj;
-    this.dialogRef.componentInstance.categories = this.categories;
+    this.dialogRef = this.dialog.open(EditCategoryComponent, this.dialogConfig);
+    this.dialogRef.componentInstance.categoryObj = obj.obj;
     this.closeModal(this.dialogRef);
     this.dialogRef.componentInstance.action
       .pipe(untilComponentDestroyed(this))
-      .subscribe((subcategoryObj: ISubcategoryCreate) => {
+      .subscribe((categoryObj: ICategory) => {
         this.dialogRef.componentInstance.isLoading = true;
-        this.updateSubcategory(tempId, subcategoryObj);
+        this.updateCategory(tempId, categoryObj);
       });
   }
 
-  updateSubcategory(id: string, subcategoryObj: ISubcategoryCreate) {
-    this.subcategoryService
-      .updateSubcategory(id, subcategoryObj)
+  updateCategory(id: string, categoryObj: ICategory) {
+    this.categoryService
+      .updateCategory(id, categoryObj)
       .pipe(untilComponentDestroyed(this))
       .subscribe((v) => {
-        this.getAllSubcategories();
+        this.getAllCategories();
         this.dialogRef.close();
         this.dialogRef.componentInstance.isLoading = false;
       });
@@ -165,9 +146,8 @@ export class SubcategoryComponent extends OnDestroyMixin implements OnInit {
   }
 
   reactiveForm() {
-    this.subcategoryForm = this.fb.group({
-      title: ['', Validators.required],
-      category_id: ['', Validators.required],
+    this.categoryForm = this.fb.group({
+      title: ['', [Validators.required, Validators.minLength(1)]],
     });
   }
 }

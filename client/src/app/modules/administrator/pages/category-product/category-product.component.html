@@ -1,35 +1,10 @@
 <mat-tab-group>
   <mat-tab label="{{ 'admin.category.create' | translate }}">
-    <div [ngClass]="{ 'loader-section': isLoading }">
-      <mat-icon *ngIf="isLoading" class="spiner" svgIcon="spiner"></mat-icon>
-      <div class="admin-container">
-        <form [formGroup]="categoryForm">
-          <div class="row justify-content-between mt-3">
-            <mat-form-field class="col-md-12">
-              <mat-label>{{ "admin.category.title" | translate }}</mat-label>
-              <input required matInput type="text" formControlName="title" />
-            </mat-form-field>
-          </div>
-
-          <button class="btn-normal btn-style-1" (click)="createCategory()">
-            {{ "general.create" | translate }}
-          </button>
-        </form>
-
-        <app-empty-data [empty]="!categories.length"></app-empty-data>
-        <app-table
-          *ngIf="categories.length"
-          TableClass="table-style2 mt-4"
-          [Counter]="true"
-          [ColData]="tableConfigService.colCategories"
-          [GridData]="gridCategories"
-          (click)="onActionHandler($event)"
-          [SvgData]="tableConfigService.svgAdmin"
-        ></app-table>
-      </div>
-    </div>
+    <app-create-category
+      (updateCategoryList)="updateCategoryList($event)"
+    ></app-create-category>
   </mat-tab>
   <mat-tab label="{{ 'admin.subcategory.create' | translate }}">
-    <app-subcategory [categories]="categories"></app-subcategory>
+    <app-create-subcategory [categories]="categories"></app-create-subcategory>
   </mat-tab>
 </mat-tab-group>

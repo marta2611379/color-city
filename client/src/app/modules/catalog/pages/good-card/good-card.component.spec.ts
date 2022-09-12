@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SubcategoryComponent } from './subcategory.component';
+import { GoodCardComponent } from './good-card.component';
 
-describe('SubcategoryComponent', () => {
-  let component: SubcategoryComponent;
-  let fixture: ComponentFixture<SubcategoryComponent>;
+describe('GoodCardComponent', () => {
+  let component: GoodCardComponent;
+  let fixture: ComponentFixture<GoodCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SubcategoryComponent ]
+      declarations: [ GoodCardComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SubcategoryComponent);
+    fixture = TestBed.createComponent(GoodCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
