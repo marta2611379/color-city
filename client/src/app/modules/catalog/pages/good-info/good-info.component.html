@@ -1,0 +1,109 @@
+<div class="good-info-container">
+  <div [ngClass]="{ 'loader-section': isLoading }">
+    <mat-icon *ngIf="isLoading" class="spiner" svgIcon="spiner"></mat-icon>
+    <div class="shadow" *ngIf="item">
+      <div class="info-card-photos-container">
+        <div class="photo-slider">
+          <div class="slider">
+            <ng-container *ngFor="let photo of item.imgs; let i = index">
+              <div
+                class="small-photo"
+                [ngClass]="{
+                  'small-photo-active': i == selectedImgIndex
+                }"
+                (click)="selectImg(photo, i)"
+              >
+                <img [src]="photo.img | readBufferImg" alt="Image Source" />
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div class="photo">
+          <img [src]="selectedImgObj.img | readBufferImg" alt="Image Source" />
+        </div>
+      </div>
+      <div class="info-card-container">
+        <div class="good-title">
+          {{ item.title }}
+        </div>
+        <div class="price">{{ selectedColorObj.price }}₴</div>
+        <div class="good-setting">
+          <div class="setting-title">
+            {{ "admin.product.size" | translate }}
+          </div>
+          <div #volume class="d-flex">
+            <ng-container
+              *ngFor="let sett of item.goods | modifyObjForCard; let i = index"
+            >
+              <div
+                class="setting-circle"
+                [ngClass]="{
+                  'setting-circle-active': i == selectedArrVolumeIndex
+                }"
+                (click)="selectVolume(sett, i)"
+              >
+                {{ sett[0].volume }}
+                {{ dictionaries.unit[sett[0].unit] }}
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div class="good-color mx-1">
+          <div class="setting-title">
+            {{ "admin.product.colors" | translate }}
+          </div>
+          <div #color class="d-flex">
+            <ng-container
+              *ngFor="let col of selectedArrVolume; let colIndex = index"
+            >
+              <div
+                matTooltip="{{ dictionaries.colors[col.colors] }}"
+                [matTooltipPosition]="'above'"
+                class="color-circle"
+                [ngStyle]="{ 'background-color': col.colors }"
+                [ngClass]="{
+                  'color-circle-active': colIndex == selectedArrColorIndex
+                }"
+                (click)="selectColor(col, colIndex)"
+              ></div>
+            </ng-container>
+          </div>
+        </div>
+        <div>
+          <div class="setting-title">
+            {{ "admin.product.quantity" | translate }}
+          </div>
+          <div class="quantity-container">
+            <div
+              class="decrement"
+              (click)="decrement(selectedColorObj.available_quantity)"
+            >
+              <mat-icon svgIcon="dec"></mat-icon>
+            </div>
+            <input
+              class="quantity"
+              type="number"
+              min="1"
+              value="1"
+              [formControl]="goodQuantity"
+            />
+            <div
+              class="increment"
+              (click)="increment(selectedColorObj.available_quantity)"
+            >
+              <mat-icon svgIcon="inc"></mat-icon>
+            </div>
+          </div>
+        </div>
+        <button
+          class="btn-large btn-style-1 btn-card"
+          matTooltip="{{ 'general.add_to_backet' | translate }}"
+          [matTooltipPosition]="'above'"
+        >
+          <mat-icon svgIcon="backet"> </mat-icon>
+          {{ "general.add_to_backet" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 <div class="row">
-  <mat-checkbox class="col-md-12 mt-4" (change)="baseCheck($event.checked)">
+  <mat-checkbox class="col-md-12" (change)="baseCheck($event.checked)">
     {{ "admin.product.base" | translate }}
   </mat-checkbox>
 </div>
@@ -10,11 +10,6 @@
       *ngFor="let item of array.controls; let sitesIndex = index"
       [formGroupName]="sitesIndex"
     >
-      <div class="col-md-3">
-        <app-file-upload
-          (onChange)="getImg($event, sitesIndex)"
-        ></app-file-upload>
-      </div>
       <div class="row col-md-9 px-0 mx-0" style="height: fit-content">
         <mat-form-field class="col-md-4">
           <mat-label>

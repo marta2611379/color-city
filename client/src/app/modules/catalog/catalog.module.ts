@@ -19,7 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TranslateModule,
     PipesModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
   ],
 })
 export class CatalogModule {}

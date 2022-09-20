@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IBrand, IBrandCreate } from '../interfaces/brand.interface';
 import { FilterParamsPipe } from '../pipes/filter-params.pipe';
+import { IProduct } from '../interfaces/product.interface';
 @Injectable({
   providedIn: 'root',
 })
@@ -10,6 +11,10 @@ export class ProductService {
 
   getProducts() {
     return this.http.get<Array<any>>(`/products/get/all`);
+  }
+
+  getProductById(id: string) {
+    return this.http.get<IProduct>(`/products/get/${id}`);
   }
 
   getSubcategoriesBySearch(searchParams?: any) {

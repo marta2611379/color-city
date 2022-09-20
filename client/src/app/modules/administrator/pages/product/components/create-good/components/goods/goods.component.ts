@@ -58,10 +58,6 @@ export class GoodsComponent implements OnInit {
     if (e) (this.array.at(i) as FormGroup)?.setControl(e.controlName, e.form);
   }
 
-  getImg(e: any, i: number) {
-    if (e) (this.array.at(i) as FormGroup)?.get('img')?.setValue(e);
-  }
-
   reactiveForm() {
     this.myForm = this.fb.group({
       goods: this.fb.array([this.createFormGroup()]),
@@ -70,7 +66,6 @@ export class GoodsComponent implements OnInit {
 
   createFormGroup() {
     return this.fb.group({
-      img: [''],
       unit: ['кг', Validators.required],
       volume: ['3', Validators.required],
       price: ['300', Validators.required],

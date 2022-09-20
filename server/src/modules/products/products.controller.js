@@ -19,6 +19,19 @@ const getProducts = async (req, res) => {
         .catch(err => res.status(500).json(err));
 }
 
+const getProductById = async (req, res) => {
+    await ProductsModels.findById(req.params.id)
+        .populate({
+            path: 'category_id'
+        }).populate({
+            path: 'subcategory_id'
+        }).populate({
+            path: 'manufacturer_id',
+        })
+        .then(product => res.status(200).json(product))
+        .catch(err => res.status(500).json(err));
+}
+
 const searchProducts = async (req, res) => {
     await ProductsModels.find(await searchParams.searchData(req.params.searchParams))
         .populate({
@@ -45,7 +58,9 @@ const createProducts = async (req, res) => {
         };
         tempArr.push(new Object({ img: file.originalname, final: final_img }))
     })
-    data.goods.map(v => {
+
+
+    data.imgs.map(v => {
         const temp = tempArr.filter(image => image.img == v.img)
         if (temp.length)
             v.img = (temp[0].final)
@@ -98,5 +113,5 @@ const emptyFolder = async (folderPath) => {
     }
 }
 
-module.exports = { getProducts, updateProducts, deleteProducts, createProducts, searchProducts };
+module.exports = { getProducts, getProductById, updateProducts, deleteProducts, createProducts, searchProducts };
 

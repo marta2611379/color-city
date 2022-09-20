@@ -14,14 +14,12 @@ export class GoodsComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    public dictionaries: DictionaryService,
-    private toastr:ToastrService
+    public dictionaries: DictionaryService
   ) {}
 
   ngOnInit(): void {
     this.isLoading = true;
     this.productService.getProducts().subscribe((v) => {
-      // console.log(v);
       this.products = v;
       this.isLoading = false;
     });

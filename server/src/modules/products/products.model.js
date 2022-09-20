@@ -3,8 +3,8 @@ const imageSchema = new mongoose.Schema({
     image: Buffer,
     contentType: String
 });
+
 const goodSchema = mongoose.Schema({
-    img: { type: imageSchema },
     unit: {
         type: String,
         required: true, enum: ['kg', 'l'],
@@ -37,6 +37,7 @@ const goodSchema = mongoose.Schema({
 
 
 const Product = mongoose.Schema({
+    imgs: { type: [{ img: imageSchema }], required: true, },
     title: {
         type: String,
         require: true,
@@ -67,8 +68,6 @@ const Product = mongoose.Schema({
         type: String,
         required: true
     },
-
-    // goods: [goodSchema],
     goods: {
         type: [goodSchema],
         required: true,

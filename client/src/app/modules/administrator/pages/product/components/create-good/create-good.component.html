@@ -2,7 +2,44 @@
   <mat-icon *ngIf="isLoading" class="spiner" svgIcon="spiner"></mat-icon>
   <div class="admin-container">
     <form [formGroup]="productForm">
-      <h2>{{ "admin.product.main_characteristics" | translate }}</h2>
+      <h2>{{ "admin.product.photo" | translate }}</h2>
+      <div formArrayName="imgs">
+        <div
+          class="row"
+          *ngFor="let item of array.controls; let sitesIndex = index"
+          [formGroupName]="sitesIndex"
+        >
+          <div class="col-md-3">
+            <app-file-upload
+              (onChange)="getImg($event, sitesIndex)"
+            ></app-file-upload>
+          </div>
+          <div class="row col-md-9 px-0 mx-0" style="height: fit-content">
+            <button
+              class="btn-svg btn-danger-my ml-3 mt-3"
+              *ngIf="displayDelBtn(array)"
+              (click)="deletedItem(array, sitesIndex)"
+              matTooltip="{{ 'general.delete' | translate }}"
+              [matTooltipPosition]="'above'"
+            >
+              <mat-icon svgIcon="trash"></mat-icon>
+            </button>
+          </div>
+        </div>
+        <div class="d-flex pb-3">
+          <button
+            class="btn-svg btn-primary-my"
+            (click)="addItem(array)"
+            matTooltip="{{ 'general.create' | translate }}"
+            [matTooltipPosition]="'above'"
+          >
+            <mat-icon svgIcon="add"></mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <mat-divider class="my-3 row"></mat-divider>
+      <h2>{{ "admin.product.general_characteristics" | translate }}</h2>
       <div class="row mt-3">
         <mat-form-field class="col-md-6">
           <mat-label>{{ "admin.product.title" | translate }}</mat-label>
@@ -161,13 +198,17 @@
           "
         ></app-multiple-mat-select>
 
-        <app-goods
-          (arrayValue)="getVolumeValue($event)"
-          [dictionaryColors]="dictionaries.colors"
-          [dictionaryColorsBase]="dictionaries.colors_base"
-          [dictionaryDegreeBrilliance]="dictionaries.degree_brilliance"
-          [dictionaryUnit]="dictionaries.unit"
-        ></app-goods>
+        <mat-form-field class="col-md-12">
+          <mat-label> {{ "admin.product.description" | translate }}</mat-label>
+          <textarea
+            matInput
+            formControlName="description"
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="1"
+            cdkAutosizeMaxRows="10"
+          ></textarea>
+        </mat-form-field>
 
         <mat-checkbox class="col-md-12 mt-4" formControlName="odorless">
           {{ "admin.product.odorless" | translate }}
@@ -180,6 +221,16 @@
         <mat-checkbox class="col-md-12 mt-4" formControlName="washing">
           {{ "admin.product.washing" | translate }}
         </mat-checkbox>
+
+        <mat-divider class="my-3 row"></mat-divider>
+        <h2>{{ "admin.product.main_characteristics" | translate }}</h2>
+        <app-goods
+          (arrayValue)="getVolumeValue($event)"
+          [dictionaryColors]="dictionaries.colors"
+          [dictionaryColorsBase]="dictionaries.colors_base"
+          [dictionaryDegreeBrilliance]="dictionaries.degree_brilliance"
+          [dictionaryUnit]="dictionaries.unit"
+        ></app-goods>
       </div>
       <button class="btn-normal btn-style-1 my-4" (click)="createProduct()">
         {{ "general.create" | translate }}

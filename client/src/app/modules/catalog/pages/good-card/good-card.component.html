@@ -1,6 +1,8 @@
-<div class="good-img">
-  <img [src]="selectedColorObj?.img | readBufferImg" alt="Image Source" />
-</div>
+<a [title]="item.name + ' details'" [routerLink]="['../product', item._id]">
+  <div class="good-img">
+    <img [src]="item?.imgs[0].img | readBufferImg" alt="Image Source" />
+  </div>
+</a>
 
 <div class="good-content">
   <div class="good-title">

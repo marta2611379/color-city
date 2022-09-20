@@ -64,7 +64,12 @@
             "price": "Ціна",
             "article_number": "Артикул",
             "base": "База",
-            "main_characteristics": "Основні характеристики"
+            "main_characteristics": "Основні характеристики",
+            "general_characteristics": "Загальні характеристики",
+            "photo": "Фото товару",
+            "description": "Опис товару",
+            "quantity":"Кількість",
+            "size":"Об'єм/Вага"
         }
     },
     "message": {

@@ -42,7 +42,6 @@ export class GoodCardComponent implements OnInit {
   }
 
   selectVolume(sett: any, index: number) {
-    console.log(sett);
     this.selectedArrVolume = sett;
     this.selectedArrVolumeIndex = index;
     setTimeout(() => {
@@ -51,21 +50,18 @@ export class GoodCardComponent implements OnInit {
   }
 
   selectColor(col: any, colIndex: number) {
-    console.log(col, colIndex);
     this.selectedColorObj = col;
     this.selectedArrColorIndex = colIndex;
     this.goodQuantity.setValue(1);
   }
 
   increment(item: any) {
-    console.log(item);
     item > this.goodQuantity.value
       ? this.goodQuantity.setValue(this.goodQuantity.value + 1)
       : this.toastr.warning(`На складі залишилось ${item} шт.`);
   }
 
   decrement(item: any) {
-    console.log(item);
     this.goodQuantity.value > 1
       ? this.goodQuantity.setValue(this.goodQuantity.value - 1)
       : this.toastr.warning('Мінімальна кількість 1 шт.');

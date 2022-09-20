@@ -1,8 +1,13 @@
-<div [ngClass]="{ 'loader-section': isLoading }">
-  <mat-icon *ngIf="isLoading" class="spiner" svgIcon="spiner"></mat-icon>
-  <div class="good-container">
-    <ng-container *ngFor="let item of products; let card_I = index">
-      <app-good-card class="good-card" [item]="item"></app-good-card>
-    </ng-container>
+<div class="d-flex">
+  <div class="side-panel"></div>
+  <div class="router-container">
+    <div [ngClass]="{ 'loader-section': isLoading }">
+      <mat-icon *ngIf="isLoading" class="spiner" svgIcon="spiner"></mat-icon>
+      <div class="good-container">
+        <ng-container *ngFor="let item of products; let card_I = index">
+          <app-good-card class="good-card" [item]="item"> </app-good-card>
+        </ng-container>
+      </div>
+    </div>
   </div>
 </div>
