@@ -1,7 +1,5 @@
 const searchParams = require('../../helpers/searchParams');
 const ProductsModels = require('./products.model');
-// import fsPromises from 'fs/promises'
-// import path from 'path'
 var fsPromises = require('fs/promises');
 var path = require('path');
 const fs = require("fs");
@@ -9,11 +7,11 @@ const fs = require("fs");
 const getProducts = async (req, res) => {
     await ProductsModels.find()
         .populate({
-            path: 'category_id'
+            path: 'category',
         }).populate({
-            path: 'subcategory_id'
+            path: 'subcategory'
         }).populate({
-            path: 'manufacturer_id',
+            path: 'manufacturer',
         })
         .then(product => res.status(200).json(product))
         .catch(err => res.status(500).json(err));
@@ -22,11 +20,11 @@ const getProducts = async (req, res) => {
 const getProductById = async (req, res) => {
     await ProductsModels.findById(req.params.id)
         .populate({
-            path: 'category_id'
+            path: 'category',
         }).populate({
-            path: 'subcategory_id'
+            path: 'subcategory'
         }).populate({
-            path: 'manufacturer_id',
+            path: 'manufacturer',
         })
         .then(product => res.status(200).json(product))
         .catch(err => res.status(500).json(err));
@@ -35,11 +33,11 @@ const getProductById = async (req, res) => {
 const searchProducts = async (req, res) => {
     await ProductsModels.find(await searchParams.searchData(req.params.searchParams))
         .populate({
-            path: 'category_id'
+            path: 'category'
         }).populate({
-            path: 'subcategory_id'
+            path: 'subcategory'
         }).populate({
-            path: 'manufacturer_id',
+            path: 'manufacturer',
         })
         .then(subcategories => res.status(200).json(subcategories))
         .catch(err => res.status(500).json(err));

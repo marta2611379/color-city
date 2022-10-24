@@ -23,7 +23,6 @@ $cardWidth: calc(#{$cardSpace} - #{$cardMarginSpaceY});
     padding: 16px;
     transition: 0.1s;
     box-shadow: $lightBoxShadow;
-    // border:1px solid rgba(166, 171, 189, 0.05);
     &:hover {
         box-shadow: $mainBoxShadow;
         cursor: pointer;

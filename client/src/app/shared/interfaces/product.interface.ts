@@ -11,9 +11,15 @@ export interface IProduct {
   _id?: string;
   imgs: Array<{ img: any }>;
   title: string;
-  manufacturer_id: string;
-  category_id: string;
-  subcategory_id: string;
+  // manufacturer?: any;
+  // category?: any;
+  // subcategory?: any;
+  manufacturer_id: any;
+  category_id: any;
+  subcategory_id: any;
+  // manufacturer_id: string | IBrand;
+  // category_id: string | ICategory;
+  // subcategory_id: string | ISubcategory;
   manufacturer_country: string;
   article_number: string;
   goods: Array<IGood>;
@@ -26,6 +32,7 @@ export interface IProduct {
   used_for_materials: Array<UsedForMaterialsEnum>;
   textured: boolean;
   washing: boolean;
+  description: string;
   status: string;
 }
 

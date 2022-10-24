@@ -2,7 +2,6 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
-  Input,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -76,14 +75,12 @@ export class GoodInfoComponent extends OnDestroyMixin implements OnInit {
         v.imgs.push(v.imgs[1]);
         v.imgs.push(v.imgs[0]);
         v.imgs.push(v.imgs[1]);
-        // v.imgs.push(v.imgs[0])
-        // v.imgs.push(v.imgs[0])
-        // v.imgs.push(v.imgs[0])
         this.selectedImgObj = v.imgs[0];
         this.selectedImgIndex = 0;
         this.isLoading = false;
       });
   }
+
   selectVolume(sett: any, index: number) {
     this.selectedArrVolume = sett;
     this.selectedArrVolumeIndex = index;
@@ -99,8 +96,6 @@ export class GoodInfoComponent extends OnDestroyMixin implements OnInit {
   }
 
   selectImg(photo: any, i: number) {
-    console.log(photo, i);
-
     this.selectedImgObj = photo;
     this.selectedImgIndex = i;
   }

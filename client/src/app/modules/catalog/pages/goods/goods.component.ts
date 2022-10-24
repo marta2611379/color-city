@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
+import {
+  OnDestroyMixin,
+  untilComponentDestroyed,
+} from '@w11k/ngx-componentdestroyed';
 import { DictionaryService } from 'src/app/shared/services/dictionaries/dictionary.service';
 import { ProductService } from 'src/app/shared/services/product.service';
 
@@ -8,20 +11,25 @@ import { ProductService } from 'src/app/shared/services/product.service';
   templateUrl: './goods.component.html',
   styleUrls: ['./goods.component.scss'],
 })
-export class GoodsComponent implements OnInit {
+export class GoodsComponent extends OnDestroyMixin implements OnInit {
   products: any[] = [];
   isLoading: boolean = false;
 
   constructor(
     private productService: ProductService,
     public dictionaries: DictionaryService
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.productService.getProducts().subscribe((v) => {
-      this.products = v;
-      this.isLoading = false;
-    });
+    this.productService
+      .getProducts()
+      .pipe(untilComponentDestroyed(this))
+      .subscribe((v) => {
+        this.products = v;
+        this.isLoading = false;
+      });
   }
 }

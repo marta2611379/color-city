@@ -1,10 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-  Output,
-  EventEmitter,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   OnDestroyMixin,
@@ -104,9 +98,7 @@ export class CreateGoodComponent extends OnDestroyMixin implements OnInit {
     this.productService
       .createProduct(uploadFile)
       .pipe(untilComponentDestroyed(this))
-      .subscribe((v) => {
-        console.log(v);
-      });
+      .subscribe((v) => {});
   }
 
   getMatSelectValue(e: any) {
@@ -156,7 +148,7 @@ export class CreateGoodComponent extends OnDestroyMixin implements OnInit {
       odorless: [false, Validators.required],
       textured: [false],
       washing: [false],
-      description:['']
+      description: [''],
     });
   }
 

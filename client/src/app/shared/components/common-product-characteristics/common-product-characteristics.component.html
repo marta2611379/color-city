@@ -1,0 +1,300 @@
+<div [ngClass]="{ 'loader-section': isLoading }">
+  <mat-icon *ngIf="isLoading" class="spiner" svgIcon="spiner"></mat-icon>
+  <hr />
+  <div class="w-100 d-flex justify-content-end">
+    <button
+      class="btn-style-1 btn-circle"
+      matTooltip="{{
+        editCommonInfo
+          ? ('general.save' | translate)
+          : ('general.edit' | translate)
+      }}"
+      [matTooltipPosition]="'above'"
+      (click)="edit(item)"
+    >
+      <mat-icon svgIcon="{{ editCommonInfo ? 'save' : 'edit' }}"> </mat-icon>
+    </button>
+  </div>
+
+  <div class="row">
+    <mat-list class="col-md-6 p-0 bold-col border-r">
+      <mat-list-item> {{ "admin.product.title" | translate }}: </mat-list-item>
+      <mat-list-item>
+        {{ "admin.product.article_number" | translate }}:
+      </mat-list-item>
+      <mat-list-item>
+        {{ "admin.product.manufacturer" | translate }}:
+      </mat-list-item>
+      <mat-list-item>
+        {{ "admin.product.manufacturer_country" | translate }}:
+      </mat-list-item>
+      <mat-list-item>
+        {{ "admin.product.category" | translate }}:
+      </mat-list-item>
+      <mat-list-item>
+        {{ "admin.product.subcategory" | translate }}:
+      </mat-list-item>
+      <mat-list-item>
+        {{ "admin.product.product_base" | translate }}:
+      </mat-list-item>
+      <mat-list-item>
+        {{ "admin.product.expense" | translate }}:
+      </mat-list-item>
+      <mat-list-item>
+        {{ "admin.product.drying_time" | translate }}:
+      </mat-list-item>
+      <mat-list-item>
+        {{ "admin.product.use_types" | translate }}:
+      </mat-list-item>
+      <mat-list-item>
+        {{ "admin.product.used_for_materials" | translate }}:
+      </mat-list-item>
+      <mat-list-item>
+        {{ "admin.product.application_tool" | translate }}:
+      </mat-list-item>
+      <mat-list-item>
+        {{ "admin.product.odorless" | translate }}:
+      </mat-list-item>
+      <mat-list-item>
+        {{ "admin.product.textured" | translate }}:
+      </mat-list-item>
+      <mat-list-item>
+        {{ "admin.product.washing" | translate }}:
+      </mat-list-item>
+    </mat-list>
+    <mat-list class="col-md-6 p-0">
+      <mat-list-item>
+        <span *ngIf="!editCommonInfo">{{ item.title }}</span>
+        <input
+          class="input-border"
+          *ngIf="editCommonInfo"
+          type="text"
+          [(ngModel)]="item.title"
+        />
+      </mat-list-item>
+      <mat-list-item>
+        <span *ngIf="!editCommonInfo">{{ item.article_number }}</span>
+        <input
+          class="input-border"
+          *ngIf="editCommonInfo"
+          type="text"
+          [(ngModel)]="item.article_number"
+        />
+      </mat-list-item>
+      <mat-list-item>
+        <span *ngIf="!editCommonInfo">{{ item.manufacturer.title }}</span>
+        <mat-select [(value)]="item.manufacturer_id" *ngIf="editCommonInfo">
+          <mat-option
+            matTooltip="{{ item.title }}"
+            matToolTipPosition="after"
+            *ngFor="let item of brands"
+            [value]="item._id"
+          >
+            {{ item.title }}
+          </mat-option>
+        </mat-select>
+      </mat-list-item>
+      <mat-list-item>
+        <span *ngIf="!editCommonInfo"> {{ item.manufacturer_country }}</span>
+        <input
+          class="input-border"
+          *ngIf="editCommonInfo"
+          type="text"
+          [(ngModel)]="item.manufacturer_country"
+        />
+      </mat-list-item>
+      <mat-list-item>
+        <span> {{ item.category.title }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span> {{ item.subcategory.title }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span *ngIf="!editCommonInfo">
+          {{ dictionaries.product_base[item.product_base] }}
+        </span>
+        <mat-select [(value)]="item.product_base" *ngIf="editCommonInfo">
+          <mat-option
+            matTooltip="{{ item.value }}"
+            matToolTipPosition="after"
+            *ngFor="
+              let item of dictionaries.product_base
+                | keyvalue
+                | sortBy: 'asc':'value'
+            "
+            [value]="item.key"
+          >
+            {{ item.value }}
+          </mat-option>
+        </mat-select>
+      </mat-list-item>
+      <mat-list-item>
+        <span *ngIf="!editCommonInfo"> {{ item.expense }}</span>
+        <input
+          class="input-border"
+          *ngIf="editCommonInfo"
+          type="text"
+          [(ngModel)]="item.expense"
+        />
+      </mat-list-item>
+      <mat-list-item>
+        <span *ngIf="!editCommonInfo">{{ item.drying_time }}</span>
+        <input
+          class="input-border"
+          *ngIf="editCommonInfo"
+          type="text"
+          [(ngModel)]="item.drying_time"
+        />
+      </mat-list-item>
+      <mat-list-item>
+        <span *ngIf="!editCommonInfo">
+          {{ dictionaries.use_types[item.use_types] }}
+        </span>
+        <mat-select [(value)]="item.use_types" *ngIf="editCommonInfo">
+          <mat-option
+            matTooltip="{{ item.value }}"
+            matToolTipPosition="after"
+            *ngFor="
+              let item of dictionaries.use_types
+                | keyvalue
+                | sortBy: 'asc':'value'
+            "
+            [value]="item.key"
+          >
+            {{ item.value }}
+          </mat-option>
+        </mat-select>
+      </mat-list-item>
+      <mat-list-item>
+        <span *ngIf="!editCommonInfo">
+          <span *ngFor="let val of item.used_for_materials; let i = index">
+            {{ dictionaries.used_for_materials[val] }}
+            <ng-container *ngIf="item.used_for_materials.length - 1 != i">
+              ,
+            </ng-container>
+          </span>
+        </span>
+        <mat-select
+          *ngIf="editCommonInfo"
+          [(value)]="item.used_for_materials"
+          multiple
+        >
+          <mat-option
+            *ngFor="
+              let item of dictionaries.used_for_materials
+                | keyvalue
+                | sortBy: 'asc':'value'
+            "
+            [value]="item.key"
+          >
+            {{ item.value }}
+          </mat-option>
+        </mat-select>
+      </mat-list-item>
+      <mat-list-item>
+        <span *ngIf="!editCommonInfo">
+          <span *ngFor="let val of item.application_tool; let i = index">
+            {{ dictionaries.application_tool[val] }}
+            <ng-container *ngIf="item.application_tool.length - 1 != i">
+              ,
+            </ng-container>
+          </span>
+        </span>
+        <mat-select
+          *ngIf="editCommonInfo"
+          [(value)]="item.application_tool"
+          multiple
+        >
+          <mat-option
+            *ngFor="
+              let item of dictionaries.application_tool
+                | keyvalue
+                | sortBy: 'asc':'value'
+            "
+            [value]="item.key"
+          >
+            {{ item.value }}
+          </mat-option>
+        </mat-select>
+      </mat-list-item>
+      <mat-list-item>
+        <ng-container *ngIf="!editCommonInfo">
+          <ng-container *ngIf="item.odorless; else odorlessNone">
+            {{ "general.yes" | translate }}
+          </ng-container>
+          <ng-template #odorlessNone>
+            {{ "general.no" | translate }}
+          </ng-template>
+        </ng-container>
+        <mat-checkbox
+          *ngIf="editCommonInfo"
+          class="col-md-12"
+          [(ngModel)]="item.odorless"
+        >
+        </mat-checkbox>
+      </mat-list-item>
+      <mat-list-item>
+        <ng-container *ngIf="!editCommonInfo">
+          <ng-container *ngIf="item.textured; else texturedNone">
+            {{ "general.yes" | translate }}
+          </ng-container>
+          <ng-template #texturedNone>{{
+            "general.no" | translate
+          }}</ng-template>
+        </ng-container>
+        <mat-checkbox
+          *ngIf="editCommonInfo"
+          class="col-md-12"
+          [(ngModel)]="item.textured"
+        >
+        </mat-checkbox>
+      </mat-list-item>
+      <mat-list-item>
+        <ng-container *ngIf="!editCommonInfo">
+          <ng-container *ngIf="item.washing; else washingNone">
+            {{ "general.yes" | translate }}
+          </ng-container>
+          <ng-template #washingNone>{{ "general.no" | translate }}</ng-template>
+        </ng-container>
+        <mat-checkbox
+          *ngIf="editCommonInfo"
+          class="col-md-12"
+          [(ngModel)]="item.washing"
+        >
+        </mat-checkbox>
+      </mat-list-item>
+    </mat-list>
+  </div>
+  <div class="row" style="font-size: 16px">
+    <div
+      class="col-md-12"
+      style="font-weight: 600; line-height: 35px; padding: 0 16px"
+    >
+      {{ "admin.product.description" | translate }}:
+    </div>
+    <span
+      *ngIf="!editCommonInfo"
+      style="
+        line-height: 35px;
+        padding: 0 16px;
+        overflow-y: scroll;
+        height: 150px;
+      "
+      class="scroll-mini"
+    >
+      {{ item.description | emptyInfo }}
+    </span>
+
+    <textarea
+      *ngIf="editCommonInfo"
+      class="scroll-mini input-border"
+      style="padding: 16px"
+      matInput
+      [(ngModel)]="item.description"
+      cdkTextareaAutosize
+      #autosize="cdkTextareaAutosize"
+      cdkAutosizeMinRows="3"
+      cdkAutosizeMaxRows="9"
+    ></textarea>
+  </div>
+</div>

@@ -1,6 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
+  OnDestroyMixin,
+  untilComponentDestroyed,
+} from '@w11k/ngx-componentdestroyed';
+import {
   BrilianceEnum,
   ColorsBaseEnum,
   ColorsEnum,
@@ -13,7 +17,7 @@ import { Dictionary } from 'src/app/shared/interfaces/common.interface';
   templateUrl: './goods.component.html',
   styleUrls: ['./goods.component.scss'],
 })
-export class GoodsComponent implements OnInit {
+export class GoodsComponent extends OnDestroyMixin implements OnInit {
   @Output() arrayValue = new EventEmitter();
   @Input() dictionaryColors!: Dictionary<ColorsEnum>;
   @Input() dictionaryColorsBase!: Dictionary<ColorsBaseEnum>;
@@ -24,14 +28,18 @@ export class GoodsComponent implements OnInit {
   myForm: FormGroup = new FormGroup({});
   uploadFile = new FormData();
   arrFormData: any = [];
-  constructor(public fb: FormBuilder) {}
+  constructor(public fb: FormBuilder) {
+    super();
+  }
 
   ngOnInit(): void {
     this.reactiveForm();
     this.arrayValue.emit(this.myForm.controls['goods']);
-    this.array.valueChanges.subscribe(() => {
-      this.arrayValue.emit(this.myForm.controls['goods']);
-    });
+    this.array.valueChanges
+      .pipe(untilComponentDestroyed(this))
+      .subscribe(() => {
+        this.arrayValue.emit(this.myForm.controls['goods']);
+      });
   }
 
   baseCheck(value: boolean) {

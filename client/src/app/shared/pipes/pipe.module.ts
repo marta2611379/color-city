@@ -5,6 +5,7 @@ import { SortByPipe } from './sortBy.pipe';
 import { ModifyObjForCardPipe } from './modify-obj-for-card.pipe';
 import { ReadBufferImgPipe } from './read-buffer-img.pipe';
 import { UnitVolumeColorsPipe } from './unit-volume-colors.pipe';
+import { EmptyInfoPipe } from './empty-info.pipe';
 
 const basicPipes = [
   FilterParamsPipe,
@@ -12,6 +13,7 @@ const basicPipes = [
   ModifyObjForCardPipe,
   ReadBufferImgPipe,
   UnitVolumeColorsPipe,
+  EmptyInfoPipe,
 ];
 
 @NgModule({

@@ -46,18 +46,15 @@ const Product = mongoose.Schema({
         minLength: [1, 'Name is too short!'],
     },
     manufacturer_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Brand",
+        type: String,
         required: true
     },
     category_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Category",
+        type: String,
         required: true
     },
     subcategory_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Subcategory",
+        type: String,
         required: true
     },
     manufacturer_country: {
@@ -93,7 +90,8 @@ const Product = mongoose.Schema({
         required: true,
     },
     use_types: {
-        type: Array,
+        type: String,
+        // type: Array,
         required: true,
     },
     used_for_materials: {
@@ -108,6 +106,11 @@ const Product = mongoose.Schema({
         type: Boolean,
         required: true,
     },
+    description: {
+        type: String,
+        require: false,
+        default: null
+    },
     status: {
         type: String,
         default: 'active',
@@ -118,6 +121,31 @@ const Product = mongoose.Schema({
     timestamps: true
 });
 
+Product.virtual('category', {
+    ref: 'Category',
+    localField: 'category_id',
+    foreignField: '_id',
+    justOne: true
+});
+
+Product.virtual('manufacturer', {
+    ref: 'Brand',
+    localField: 'manufacturer_id',
+    foreignField: '_id',
+    justOne: true
+});
+
+Product.virtual('subcategory', {
+    ref: 'Subcategory',
+    localField: 'subcategory_id',
+    foreignField: '_id',
+    justOne: true
+});
+
+
+// tell Mongoose to retreive the virtual fields
+Product.set('toObject', { virtuals: true });
+Product.set('toJSON', { virtuals: true });
 
 module.exports = mongoose.model('Product', Product);
 

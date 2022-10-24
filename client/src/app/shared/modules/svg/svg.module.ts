@@ -84,5 +84,26 @@ export class SvgModule {
         '../../assets/icons/plus.svg'
       )
     );
+
+    this.matIconRegistry.addSvgIcon(
+      'less',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        '../../assets/icons/expand_less.svg'
+      )
+    );
+
+    this.matIconRegistry.addSvgIcon(
+      'more',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        '../../assets/icons/expand_more.svg'
+      )
+    );
+
+    this.matIconRegistry.addSvgIcon(
+      'save',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        '../../assets/icons/save.svg'
+      )
+    );
   }
 }

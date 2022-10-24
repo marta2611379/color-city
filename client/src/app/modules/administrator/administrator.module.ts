@@ -25,6 +25,7 @@ import { CreateCategoryComponent } from './pages/category-product/components/cre
 import { CreateGoodComponent } from './pages/product/components/create-good/create-good.component';
 import { EditGoodComponent } from './pages/product/components/edit-good/edit-good.component';
 import { EditCardComponent } from './pages/product/components/edit-good/components/edit-card/edit-card.component';
+import { CommonProductCharacteristicsModule } from 'src/app/shared/components/common-product-characteristics/common-product-characteristics.module';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { EditCardComponent } from './pages/product/components/edit-good/componen
     FormArrayModule,
     PipesModule,
     MultipleMatSelectModule,
+    CommonProductCharacteristicsModule,
   ],
 })
 export class AdministratorModule {}
